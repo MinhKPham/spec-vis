@@ -8,19 +8,38 @@ public class rayshooting : MonoBehaviour {
 
     Ray RayOrigin;
     RaycastHit HitInfo;
+    RaycastHit hit;
     void Start () {
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(KeyCode.E))
+        Vector3 fwd = Camera.main.transform.forward;
+        
+        
+        if (Physics.Raycast(Camera.main.transform.position, fwd, out hit))
         {
-            RayOrigin = Camera.main.ViewportPointToRay(new Vector3(0, 0, 0));
-            if (Physics.Raycast(RayOrigin, out HitInfo, 100f))
+            Vector3 from = transform.position;
+            Vector3 to = hit.point;
+            Vector3 direction = to - from;
+            Debug.DrawRay(Camera.main.transform.position, direction, Color.green);
+            
+            if (Input.GetKey(KeyCode.E))
             {
-                Debug.DrawRay(RayOrigin.direction, HitInfo.point, Color.yellow);
+                //RayOrigin = Camera.main.ViewportPointToRay(new Vector3(0, 0, 0));
+                if (Physics.Raycast(from,direction, out HitInfo))
+                {
+                    Debug.DrawRay(transform.position, HitInfo.point- transform.position, Color.blue);
+                    print(hit.collider.gameObject.name+"=="+ HitInfo.collider.gameObject.name);
+
+
+                }
+
+
             }
         }
+        
+
     }
 }

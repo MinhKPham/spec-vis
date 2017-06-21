@@ -17,7 +17,7 @@ public class addforce : MonoBehaviour {
         {
             collision.rigidbody.AddForce(new Vector3(0, force*25, 0));
         }
-        print("fffff");
+        
     }
     void Update () {
 		

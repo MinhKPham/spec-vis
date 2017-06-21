@@ -54,6 +54,6 @@ public class LineVisualizer : MonoBehaviour
             bars[i].GetComponent<addforce>().force = result*200;
             //lineRenderer.SetPosition(i,position);
         }
-        print(max);
+        
 	}
 }
