@@ -49,7 +49,7 @@ public class LineVisualizer : MonoBehaviour
             if (samples[i] * amplitude > max) max = samples[i] * amplitude;
             float result = samples[i] * amplitude*(1+i*2/cutoffSample);
             if (result < 1) result = 1;
-            if (result > 17) result = 17;
+            if (result > 15) result = 15;
             bars2[i].transform.localScale = new Vector3(bars2[i].transform.localScale.x, result*10, bars2[i].transform.localScale.z);
             bars[i].GetComponent<addforce>().force = result*200;
             //lineRenderer.SetPosition(i,position);
