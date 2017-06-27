@@ -119,6 +119,7 @@
     <Compile Include="Assets\Sample Assets\Cross Platform Input\Scripts\VirtualInput.cs" />
     <Compile Include="Assets\Sample Assets\Utility\SimpleMouseRotator.cs" />
     <Compile Include="Assets\addforce.cs" />
+    <Compile Include="Assets\adjustforclipping.cs" />
     <Compile Include="Assets\fallfaster.cs" />
     <Compile Include="Assets\rayshooting.cs" />
   </ItemGroup>

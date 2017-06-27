@@ -9,9 +9,12 @@ public class rayshooting : MonoBehaviour {
     Ray RayOrigin;
     RaycastHit HitInfo;
     RaycastHit hit;
+    public GameObject target;
+    public GameObject holder;
     public LineRenderer laserLineRenderer;
     public float laserWidth = 0.1f;
     public float laserMaxLength = 5f;
+    float time = 0;
     void Start () {
         Vector3[] initLaserPositions = new Vector3[2] { Vector3.zero, Vector3.zero };
         laserLineRenderer.SetPositions(initLaserPositions);
@@ -22,40 +25,62 @@ public class rayshooting : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        time += Time.deltaTime;
         Vector3 fwd = Camera.main.transform.forward;
 
         laserLineRenderer.enabled = false;
-        if (Physics.Raycast(Camera.main.transform.position, fwd, out hit))
+        if (Input.GetMouseButton(0) && time >= 0.1f)
         {
-            Vector3 from = transform.position;
-            Vector3 to = hit.point;
-            Vector3 direction = to - from;
-            Debug.DrawRay(Camera.main.transform.position, direction, Color.green);
-            
-            if (Input.GetKey(KeyCode.E))
+            time = 0;
+            laserLineRenderer.enabled = true;
+            if (true)
             {
-                //RayOrigin = Camera.main.ViewportPointToRay(new Vector3(0, 0, 0));
-                if (Physics.Raycast(from,direction, out HitInfo))
+                Vector3 from = target.transform.position;
+                Vector3 to = holder.transform.position;
+                Vector3 direction = to - from;
+                
+
+                
+                
+                   
+                    //RayOrigin = Camera.main.ViewportPointToRay(new Vector3(0, 0, 0));
+                if (Physics.Raycast(from, direction, out HitInfo))
                 {
-                    laserLineRenderer.enabled = true;
-                    Debug.DrawRay(transform.position, HitInfo.point- transform.position, Color.blue);
-                    print(hit.collider.gameObject.name+"=="+ HitInfo.collider.gameObject.name);
+                    
+                    Debug.DrawRay(target.transform.position, HitInfo.point - transform.position, Color.blue);
+                        
 
                     laserLineRenderer.SetPosition(0, from);
                     laserLineRenderer.SetPosition(1, HitInfo.point);
-                    
+                    print("hit");
 
+
+                }
+                else
+                {
+
+
+                    
+                    laserLineRenderer.SetPosition(0, from);
+                    laserLineRenderer.SetPosition(1, to);
+                    print("hit");
                 }
 
 
+
+
             }
-            else
-            {
-                laserLineRenderer.enabled = false;
-                
-            }
+            
+
         }
-        
+
+       
+        else
+        {
+            laserLineRenderer.enabled = false;
+
+        }
+
 
     }
 }

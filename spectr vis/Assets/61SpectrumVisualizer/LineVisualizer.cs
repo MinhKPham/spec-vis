@@ -52,7 +52,7 @@ public class LineVisualizer : MonoBehaviour
             if (result > 15) result = 15;
             bars2[i].transform.localScale = new Vector3(bars2[i].transform.localScale.x, result*10, bars2[i].transform.localScale.z);
             bars[i].GetComponent<addforce>().force = result*200;
-            //lineRenderer.SetPosition(i,position);
+            lineRenderer.SetPosition(i,position);
         }
         
 	}
