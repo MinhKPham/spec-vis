@@ -102,9 +102,12 @@ public class FirstPersonCharacter : MonoBehaviour
             if (fuel < 0) { fuel = 0; }
 			
 		}
+        
         if (Input.GetKeyDown(KeyCode.LeftShift) && cooldown >= 30)
         {
-            yv += jumpPower * 10;
+            yv = 0;
+            yv += jumpPower * 5;
+            
             cooldown = 0;
             fuel = 100;
             
